@@ -1,0 +1,143 @@
+import os
+import csv
+import pandas as gpd
+lat = []
+long = []
+post = []
+rr = []
+date = []
+nom = []
+date_post = []
+a = os.listdir(r"C:\Users\le_mi\OneDrive\Bureau\dossier_projet")
+print(a)
+for u in range(len(a)):
+    b = os.listdir(r"C:\Users\le_mi\OneDrive\Bureau\dossier_projet"+"\\"+a[u])
+for i in range(len(a)):
+    with open(r"C:\Users\le_mi\OneDrive\Bureau\dossier_projet"+"\\"+a[i]+"\\"+b[0]) as fichier:
+        line = csv.reader(fichier, delimiter=";")
+        next(line)
+        for u in line:
+            rr.append(u[6])
+            post.append(u[0])
+            date.append(u[5])
+            nom.append(u[1])
+            long.append(u[3])
+            lat.append(u[2])
+
+date_2010 = []
+dico_A = {}
+dico_N = {}
+ba = []
+arbent = []
+date_2024 = []
+
+for i in range(len(date)):
+    if int(date[i]) < 202400 and int(date[i]) > 201000:
+        date_2010.append([nom[i],date[i],post[i],rr[i],lat[i],long[i]])
+    if int(date[i]) > 202400:
+        date_2024.append([nom[i],date[i],post[i],rr[i],lat[i],long[i]])
+
+
+dico_2024 = {}
+dico_2010 = {}
+for item in date_2010:  
+    key = item[0]  
+    value = item[1:]  
+    if key in dico_2010:
+        dico_2010[key].append(value)  
+    else:
+        dico_2010[key] = [value] 
+
+for objet in date_2024:
+    clef = objet[0]
+    valeur = objet[1:]
+    if clef in dico_2024:
+        dico_2024[clef].append(valeur)
+    else:
+        dico_2024[clef] = [valeur]
+
+
+
+
+
+clés_a_supprimer= [i for i in dico_2024 if len(dico_2024[i]) != 13]
+for clé in clés_a_supprimer:
+    del dico_2024[clé]
+
+
+
+clés_a_supprimer = [i for i in dico_2010 if len(dico_2010[i]) != 14 * 12]
+for clé in clés_a_supprimer:
+    del dico_2010[clé]
+a = 0
+for i in dico_2010.keys():
+    a = a +1
+    print(a)
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+
+'''for i in range(len(date)):
+    if nom[i-1] != nom[i]:
+        ba=[]
+    ba.append(date[i])
+    dico[nom[i]]= ba
+print(dico["ARBENT"])'''
+
+"""for i in range(len(date)):
+    if nom[i]== 'ARBENT':
+        date_2010.append([nom[i],date[i]])
+print(date_2010)"""
+
+
+
+'''atata = {}
+a =[]
+do = ["gros","gras","gris"]
+b = [1000,1250,1500]
+c = 0
+for i in range(len(do)):
+    atata[do[2]]= b
+    b.append(15)
+for i in atata.items():
+    print(i)
+    
+    
+    for i in range(len(date)):
+    date[i],post[i]=int(date[i]),int(post[i])
+    if date[i]>199912:
+        date_2000.append([date[i]])
+dictionnaire = {}
+liste = []
+for i in range(len(nom)):
+    liste.append(date_post)
+    dictionnaire[nom[i]]= date_post
+
+
+    
+ date_2000 = {}
+for i in range(len(date)):
+    date_2000[nom[i]]=date
+for i in range(len(date)):
+    date_post = [nom[i],date[i],post[i]]
+    date[i],post[i]=int(date[i]),int(post[i])
+keys = []
+for i in date_2000.values():
+    print(i)
+lodo = {}
+for i in range(len(date_2000)):
+    lodo[nom[i]]=date_post
+print(lodo)
+
+   
+'''
